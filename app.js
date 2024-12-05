@@ -38,7 +38,10 @@ async function start(client) {
 		})
 		.on("end", async () => {
 			for (const element of csvData) {
-				const number = await treatNumbers(element.Phone);
+				let number = element.Phone;
+				if (!element.Phone.startsWith("55")) {
+					number = await treatNumbers(element.Phone);
+				}
 				phones.push(number);
 			}
 
