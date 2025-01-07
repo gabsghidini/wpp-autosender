@@ -13,15 +13,25 @@ wppconnect
 	});
 
 async function treatNumbers(number) {
-	// Primeiro remove o número 0 do início e substitui por 55
-	let numberArray = number.split("");
-	numberArray.shift();
-	numberArray.shift();
-	numberArray.unshift("55");
+	if (number.charAt(0) === "0") {
+		// Primeiro remove o número 0 do início e substitui por 55
+		let numberArray = number.split("");
+		numberArray.shift();
+		numberArray.shift();
+		numberArray.unshift("55");
 
-	// Depois remove os espaços e traços
-	let treatedNumber = numberArray.join("").replace(/\s|-/g, "");
-	return treatedNumber;
+		// Depois remove os espaços e traços
+		let treatedNumber = numberArray.join("").replace(/\s|-/g, "");
+		return treatedNumber;
+	} else if (number.charAt(0) === "(") {
+		// Primeiro remove as parenteses
+		let newNumber = number.replace(/\(|\)/g, "");
+		// Depois remove os espaços e traços
+		let treatedNumber = newNumber.replace(/\s|-/g, "");
+		// adiciona o 55 no início
+		treatedNumber = "55" + treatedNumber;
+		return treatedNumber;
+	}
 }
 
 function delay(ms) {
