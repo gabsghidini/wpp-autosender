@@ -17,7 +17,6 @@ async function treatNumbers(number) {
 		// Primeiro remove o número 0 do início e substitui por 55
 		let numberArray = number.split("");
 		numberArray.shift();
-		numberArray.shift();
 		numberArray.unshift("55");
 
 		// Depois remove os espaços e traços
@@ -30,6 +29,10 @@ async function treatNumbers(number) {
 		let treatedNumber = newNumber.replace(/\s|-/g, "");
 		// adiciona o 55 no início
 		treatedNumber = "55" + treatedNumber;
+		return treatedNumber;
+	} else if (number.charAt(0) === "+") {
+		// Primeiro remove o sinal de +
+		let treatedNumber = number.replace("+", "");
 		return treatedNumber;
 	}
 }
